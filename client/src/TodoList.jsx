@@ -7,8 +7,10 @@ export function TodoList({ todos, toggleTodo, deleteTodo }) {
         return (
           <TodoItem
             id={todo.id}
-            completed={todo.completed}
             title={todo.title}
+            notes={todo.notes}
+            duedate={todo.duedate}
+            completed={todo.completed}
             toggleTodo={toggleTodo}
             deleteTodo={deleteTodo}
             key={todo.id}

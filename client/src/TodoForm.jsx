@@ -5,7 +5,7 @@ export function TodoForm({ onSubmit }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    if (newItem === "") return;
+    if (newItem.trim() === "") return;
     onSubmit(newItem);
     setNewItem("");
   }

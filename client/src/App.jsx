@@ -6,17 +6,19 @@ export default function App() {
   const [todos, setTodos] = useState(() => {
     const storedTodos = localStorage.getItem("items");
     if (storedTodos === null) return [];
-    console.log("hi");
     return JSON.parse(storedTodos);
   });
-  console.log("hey");
+
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(todos));
   }, [todos]);
 
   function addTodo(title) {
     setTodos((currentTodos) => {
-      return [...currentTodos, { id: Date.now(), title, completed: false }];
+      return [
+        ...currentTodos,
+        { id: Date.now(), title, notes, duedate, completed: false },
+      ];
     });
   }
 
