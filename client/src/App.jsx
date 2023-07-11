@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TodoForm } from "./TodoForm";
 import { TodoList } from "./TodoList";
-import { fetchTodos, createTodo } from "./reqs";
+import { fetchTodos, createTodo, deleteTodoItem } from "./reqs";
 
 export default function App() {
   const [todos, setTodos] = useState([]);
@@ -14,7 +14,7 @@ export default function App() {
     const newTodo = {
       item: title,
       notes: "",
-      priority: "",
+      priority: "none",
       duedate: null,
       completed: false,
     };

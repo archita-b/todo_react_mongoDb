@@ -3,17 +3,13 @@ import { TodoItem } from "./TodoItem";
 export function TodoList({ todos, toggleTodo, deleteTodo }) {
   return (
     <ul className="list">
-      {todos.map((todo) => {
+      {todos.map((element) => {
         return (
           <TodoItem
-            title={todo.item}
-            notes={todo.notes}
-            duedate={todo.duedate}
-            priority={todo.priority}
-            completed={todo.completed}
+            todo={element}
             toggleTodo={toggleTodo}
             deleteTodo={deleteTodo}
-            key={todo.id}
+            key={element.id}
           />
         );
       })}

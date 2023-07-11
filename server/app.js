@@ -76,20 +76,19 @@ app.put("/todos/checked", (req, res) => {
 });
 
 app.delete("/todos/:id", (req, res) => {
+  // console.log("hi");
   const todoId = req.params.id;
+  // console.log("id=", todoId);
 
-  db.query(
-    "DELETE FROM todos_table WHERE id = $1 RETURNING *",
-    [todoId],
-    (err, result) => {
-      if (!err) {
-        res.json({ message: "Todo item deleted" });
-      } else {
-        console.error("Error deleting todo", err);
-        res.status(500).json({ error: "Internal server error" });
-      }
+  db.query("DELETE FROM todos_table WHERE id = $1", [todoId], (err, result) => {
+    // console.log("result row=", result.rowCount);
+    if (!err) {
+      res.json({ message: "Todo item deleted" });
+    } else {
+      console.error("Error deleting todo", err);
+      res.status(500).json({ error: "Internal server error" });
     }
-  );
+  });
 });
 
 app.listen(5000, () => {

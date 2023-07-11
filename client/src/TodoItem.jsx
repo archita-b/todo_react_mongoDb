@@ -1,33 +1,38 @@
 import { useEffect, useState } from "react";
-import { fetchTodos, updateTodo } from "./reqs";
+import { updateTodo, deleteTodoItem } from "./reqs";
 
-export function TodoItem({ title, completed, toggleTodo, deleteTodo }) {
-  const [notes, setNotes] = useState("");
-  const [priority, setPriority] = useState("");
-  const [duedate, setDuedate] = useState("");
-
-  useEffect(() => {
-    fetchTodos().then((data) => data.map((element) => setNotes(element.notes)));
-  }, []);
+export function TodoItem({ todo, toggleTodo, deleteTodo }) {
+  const [note, setNote] = useState(todo.notes);
+  const [todopriority, setTodopriority] = useState(todo.priority);
+  const [tododate, setTododate] = useState(todo.duedate);
 
   return (
     <li>
       <label>
         <input
           type="checkbox"
-          checked={completed}
+          checked={todo.completed}
           onChange={(e) => toggleTodo(id, e.target.checked)}
         />
-        {title}
+        {todo.item}
       </label>
 
       <textarea
-        value={notes}
-        onChange={(e) => setNotes(e.target.value)}
+        value={note}
+        onChange={(e) => {
+          setNote(e.target.value);
+          updateTodo({ ...todo, notes: e.target.value });
+        }}
         placeholder="description..."
       ></textarea>
 
-      <select value={priority} onChange={(e) => setPriority(e.target.value)}>
+      <select
+        value={todopriority}
+        onChange={(e) => {
+          setTodopriority(e.target.value);
+          updateTodo({ ...todo, priority: e.target.value });
+        }}
+      >
         <option value="none">None</option>
         <option value="low">Low</option>
         <option value="high">High</option>
@@ -35,11 +40,21 @@ export function TodoItem({ title, completed, toggleTodo, deleteTodo }) {
 
       <input
         type="date"
-        value={duedate}
-        onChange={(e) => setDuedate(e.target.value)}
+        value={tododate}
+        onChange={(e) => {
+          setTododate(e.target.value);
+          // console.log("date=", e.target.value);
+          updateTodo({ ...todo, duedate: e.target.value });
+        }}
       />
 
-      <button onClick={() => deleteTodo(id)} className="del-btn">
+      <button
+        onClick={() => {
+          deleteTodoItem(todo.id);
+          deleteTodo(todo.id);
+        }}
+        className="del-btn"
+      >
         Delete
       </button>
     </li>
