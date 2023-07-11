@@ -6,16 +6,26 @@ export async function fetchTodos() {
   return data;
 }
 
-async function createTodo(todo) {
-  await fetch(url + "/todos", {
+export async function createTodo(todo) {
+  const res = await fetch(url + "/todos", {
     method: "POST",
     headers: {
       "Content-type": "Application/json",
     },
     body: JSON.stringify(todo),
   });
+  const data = await res.json();
+  return data;
 }
 
-// async function updateTodo(todo) {
-//   await fetch();
-// }
+export async function updateTodo(todo) {
+  const res = await fetch(url + "/todos", {
+    method: "PUT",
+    headers: {
+      "Content-type": "Application/json",
+    },
+    body: JSON.stringify(todo),
+  });
+  const data = await res.json();
+  return data;
+}

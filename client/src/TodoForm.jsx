@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-export function TodoForm({ onSubmit }) {
+export function TodoForm({ addTodo }) {
   const [newItem, setNewItem] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
     if (newItem.trim() === "") return;
-    onSubmit(newItem);
+    addTodo(newItem);
     setNewItem("");
   }
 

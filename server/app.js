@@ -23,7 +23,7 @@ app.get("/todos", (req, res) => {
 });
 
 app.post("/todos", (req, res) => {
-  console.log("req in post=", req.body);
+  // console.log("req in post=", req.body);
   const { item, priority, notes, duedate, completed } = req.body;
 
   db.query(
@@ -41,7 +41,7 @@ app.post("/todos", (req, res) => {
 });
 
 app.put("/todos", (req, res) => {
-  console.log("req in put=", req.body);
+  // console.log("req in put=", req.body);
   const { id, notes, priority, duedate } = req.body;
 
   db.query(

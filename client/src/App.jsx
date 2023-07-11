@@ -1,25 +1,28 @@
 import { useEffect, useState } from "react";
 import { TodoForm } from "./TodoForm";
 import { TodoList } from "./TodoList";
+import { fetchTodos, createTodo } from "./reqs";
 
 export default function App() {
-  const [todos, setTodos] = useState(() => {
-    const storedTodos = localStorage.getItem("items");
-    if (storedTodos === null) return [];
-    return JSON.parse(storedTodos);
-  });
+  const [todos, setTodos] = useState([]);
 
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(todos));
-  }, [todos]);
+    fetchTodos().then((data) => setTodos(data));
+  }, []);
 
   function addTodo(title) {
-    setTodos((currentTodos) => {
-      return [
-        ...currentTodos,
-        { id: Date.now(), title, notes, duedate, completed: false },
-      ];
-    });
+    const newTodo = {
+      item: title,
+      notes: "",
+      priority: "",
+      duedate: null,
+      completed: false,
+    };
+    createTodo(newTodo).then((data) =>
+      setTodos((currentTodos) => {
+        return [...currentTodos, newTodo];
+      })
+    );
   }
 
   function toggleTodo(id, completed) {
@@ -41,7 +44,7 @@ export default function App() {
 
   return (
     <>
-      <TodoForm onSubmit={addTodo} />
+      <TodoForm addTodo={addTodo} />
       <h2 className="header">Todo List</h2>
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
     </>

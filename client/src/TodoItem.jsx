@@ -1,9 +1,15 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { fetchTodos, updateTodo } from "./reqs";
 
-export function TodoItem({ id, title, completed, toggleTodo, deleteTodo }) {
+export function TodoItem({ title, completed, toggleTodo, deleteTodo }) {
   const [notes, setNotes] = useState("");
+  const [priority, setPriority] = useState("");
   const [duedate, setDuedate] = useState("");
-  const [priority, setPriority] = useState("None");
+
+  useEffect(() => {
+    fetchTodos().then((data) => data.map((element) => setNotes(element.notes)));
+  }, []);
+
   return (
     <li>
       <label>
@@ -18,7 +24,7 @@ export function TodoItem({ id, title, completed, toggleTodo, deleteTodo }) {
       <textarea
         value={notes}
         onChange={(e) => setNotes(e.target.value)}
-        placeholder="description"
+        placeholder="description..."
       ></textarea>
 
       <select value={priority} onChange={(e) => setPriority(e.target.value)}>
