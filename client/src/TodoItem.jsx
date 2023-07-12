@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { updateTodo, deleteTodoItem } from "./reqs";
+import { updateTodo, deleteTodoItem, checkedTodo } from "./reqs";
 
 export function TodoItem({ todo, toggleTodo, deleteTodo }) {
   const [note, setNote] = useState(todo.notes);
@@ -12,7 +12,10 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
         <input
           type="checkbox"
           checked={todo.completed}
-          onChange={(e) => toggleTodo(id, e.target.checked)}
+          onChange={(e) => {
+            toggleTodo(todo.id, e.target.checked);
+            checkedTodo({ ...todo, completed: e.target.checked });
+          }}
         />
         {todo.item}
       </label>
@@ -43,7 +46,6 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
         value={tododate}
         onChange={(e) => {
           setTododate(e.target.value);
-          // console.log("date=", e.target.value);
           updateTodo({ ...todo, duedate: e.target.value });
         }}
       />

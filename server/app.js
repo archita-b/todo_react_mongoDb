@@ -76,12 +76,9 @@ app.put("/todos/checked", (req, res) => {
 });
 
 app.delete("/todos/:id", (req, res) => {
-  // console.log("hi");
   const todoId = req.params.id;
-  // console.log("id=", todoId);
 
   db.query("DELETE FROM todos_table WHERE id = $1", [todoId], (err, result) => {
-    // console.log("result row=", result.rowCount);
     if (!err) {
       res.json({ message: "Todo item deleted" });
     } else {
