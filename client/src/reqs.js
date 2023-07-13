@@ -1,7 +1,6 @@
 const url = "http://localhost:5000";
 
 export async function fetchTodos() {
-  console.log("hi");
   const res = await fetch(url + "/todos");
   const data = await res.json();
   data.map((element) => {

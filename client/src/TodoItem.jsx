@@ -52,8 +52,8 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
 
       <button
         onClick={() => {
-          deleteTodoItem(todo.id);
-          deleteTodo(todo.id);
+          deleteTodoItem(todo._id);
+          deleteTodo(todo._id);
         }}
         className="del-btn"
       >

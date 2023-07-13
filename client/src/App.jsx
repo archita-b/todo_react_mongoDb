@@ -18,11 +18,11 @@ export default function App() {
       duedate: null,
       completed: false,
     };
-    createTodo(newTodo).then((data) =>
+    createTodo(newTodo).then((data) => {
       setTodos((currentTodos) => {
         return [...currentTodos, newTodo];
-      })
-    );
+      });
+    });
   }
 
   function toggleTodo(id, completed) {
@@ -38,7 +38,7 @@ export default function App() {
 
   function deleteTodo(id) {
     setTodos((currentTodos) => {
-      return currentTodos.filter((todo) => todo.id !== id);
+      return currentTodos.filter((todo) => todo._id !== id);
     });
   }
 
