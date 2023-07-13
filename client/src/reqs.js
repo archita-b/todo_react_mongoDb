@@ -1,8 +1,14 @@
 const url = "http://localhost:5000";
 
 export async function fetchTodos() {
+  console.log("hi");
   const res = await fetch(url + "/todos");
   const data = await res.json();
+  data.map((element) => {
+    const timestamp = new Date(element.duedate);
+    const date = timestamp.toISOString().split("T")[0];
+    element.duedate = date;
+  });
   return data;
 }
 
