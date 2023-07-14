@@ -11,11 +11,14 @@ export default function App() {
   }, []);
 
   function addTodo(title) {
+    const timestamp = new Date(Date.now());
+    const date = timestamp.toISOString().split("T")[0];
+
     const newTodo = {
       item: title,
       notes: "",
       priority: "none",
-      duedate: null,
+      duedate: date,
       completed: false,
     };
     createTodo(newTodo).then((data) => {
@@ -28,7 +31,7 @@ export default function App() {
   function toggleTodo(id, completed) {
     setTodos((currentTodos) => {
       return currentTodos.map((todo) => {
-        if (todo.id === id) {
+        if (todo._id === id) {
           return { ...todo, completed };
         }
         return todo;

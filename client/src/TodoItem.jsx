@@ -13,7 +13,7 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
           type="checkbox"
           checked={todo.completed}
           onChange={(e) => {
-            toggleTodo(todo.id, e.target.checked);
+            toggleTodo(todo._id, e.target.checked);
             checkedTodo({ ...todo, completed: e.target.checked });
           }}
         />
