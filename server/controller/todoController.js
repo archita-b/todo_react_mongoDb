@@ -2,7 +2,10 @@ import Todo from "../model/todos.js";
 
 export const getTodos = (req, res) => {
   Todo.find()
-    .then((data) => res.json(data))
+    .then((todos) => {
+      // console.log("todos id=", Object.keys(todos[0]._id));
+      return res.json(todos);
+    })
     .catch((err) => res.status(400).json("Error: " + err));
 };
 
@@ -17,7 +20,11 @@ export const createTodo = (req, res) => {
   });
   newTodo
     .save()
-    .then(() => res.json("Todo item created"))
+    .then((todo) => {
+      // console.log("todo=", todo._id);
+      return res.json({ _id: todo._id });
+      // return todo.save();
+    })
     .catch((err) => res.status(400).json("Error:" + err));
 };
 

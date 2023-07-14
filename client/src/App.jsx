@@ -20,7 +20,7 @@ export default function App() {
     };
     createTodo(newTodo).then((data) => {
       setTodos((currentTodos) => {
-        return [...currentTodos, newTodo];
+        return [...currentTodos, { ...newTodo, ...data }];
       });
     });
   }
