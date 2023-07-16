@@ -6,6 +6,8 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
   const [todopriority, setTodopriority] = useState(todo.priority);
   const [tododate, setTododate] = useState(todo.duedate);
 
+  const today = new Date().toISOString().split("T")[0];
+
   return (
     <li>
       <label>
@@ -25,6 +27,7 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
         onChange={(e) => {
           setNote(e.target.value);
           updateTodo({ ...todo, notes: e.target.value });
+          // updateTodosArr({ ...todo, notes: e.target.value });
         }}
         placeholder="description..."
       ></textarea>
@@ -44,6 +47,7 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
       <input
         type="date"
         value={tododate}
+        min={today}
         onChange={(e) => {
           setTododate(e.target.value);
           updateTodo({ ...todo, duedate: e.target.value });

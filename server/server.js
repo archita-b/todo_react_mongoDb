@@ -11,9 +11,7 @@ app.use(express.json());
 
 app.use("/todos", todosRouter);
 
-connectDB().catch((error) => {
-  console.error("Error connecting to database");
-});
+connectDB();
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);

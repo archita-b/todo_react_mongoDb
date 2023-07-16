@@ -11,8 +11,7 @@ export default function App() {
   }, []);
 
   function addTodo(title) {
-    const timestamp = new Date(Date.now());
-    const date = timestamp.toISOString().split("T")[0];
+    const date = new Date().toISOString().split("T")[0];
 
     const newTodo = {
       item: title,
