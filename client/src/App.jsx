@@ -45,10 +45,10 @@ export default function App() {
   }
 
   return (
-    <>
-      <TodoForm addTodo={addTodo} />
+    <div className="todo-container">
       <h2 className="header">Todo List</h2>
+      <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
-    </>
+    </div>
   );
 }

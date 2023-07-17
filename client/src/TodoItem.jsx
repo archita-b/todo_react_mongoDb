@@ -5,11 +5,18 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
   const [note, setNote] = useState(todo.notes);
   const [todopriority, setTodopriority] = useState(todo.priority);
   const [tododate, setTododate] = useState(todo.duedate);
+  const [displayTodoProps, setDisplayTodoProps] = useState(false);
 
   const today = new Date().toISOString().split("T")[0];
 
+  function toggleDisplay(e) {
+    if (e.target.tagName === "LI") {
+      setDisplayTodoProps(!displayTodoProps);
+    }
+  }
+
   return (
-    <li>
+    <li onClick={toggleDisplay}>
       <label>
         <input
           type="checkbox"
@@ -22,37 +29,41 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
         {todo.item}
       </label>
 
-      <textarea
-        value={note}
-        onChange={(e) => {
-          setNote(e.target.value);
-          updateTodo({ ...todo, notes: e.target.value });
-          // updateTodosArr({ ...todo, notes: e.target.value });
-        }}
-        placeholder="description..."
-      ></textarea>
+      {displayTodoProps && (
+        <div className="todo-props">
+          <textarea
+            value={note}
+            onChange={(e) => {
+              setNote(e.target.value);
+              updateTodo({ ...todo, notes: e.target.value });
+              // updateTodos(e.target.value, priority, duedate);
+            }}
+            placeholder="description..."
+          ></textarea>
 
-      <select
-        value={todopriority}
-        onChange={(e) => {
-          setTodopriority(e.target.value);
-          updateTodo({ ...todo, priority: e.target.value });
-        }}
-      >
-        <option value="none">None</option>
-        <option value="low">Low</option>
-        <option value="high">High</option>
-      </select>
+          <select
+            value={todopriority}
+            onChange={(e) => {
+              setTodopriority(e.target.value);
+              updateTodo({ ...todo, priority: e.target.value });
+            }}
+          >
+            <option value="none">None</option>
+            <option value="low">Low</option>
+            <option value="high">High</option>
+          </select>
 
-      <input
-        type="date"
-        value={tododate}
-        min={today}
-        onChange={(e) => {
-          setTododate(e.target.value);
-          updateTodo({ ...todo, duedate: e.target.value });
-        }}
-      />
+          <input
+            type="date"
+            value={tododate}
+            min={today}
+            onChange={(e) => {
+              setTododate(e.target.value);
+              updateTodo({ ...todo, duedate: e.target.value });
+            }}
+          />
+        </div>
+      )}
 
       <button
         onClick={() => {
@@ -61,7 +72,7 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
         }}
         className="del-btn"
       >
-        Delete
+        {"\u00d7"}
       </button>
     </li>
   );

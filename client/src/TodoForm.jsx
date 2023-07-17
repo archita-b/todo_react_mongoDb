@@ -15,6 +15,7 @@ export function TodoForm({ addTodo }) {
       <div className="form-row">
         <input
           value={newItem}
+          placeholder="Add an item"
           onChange={(e) => setNewItem(e.target.value)}
           type="text"
           id="item"
