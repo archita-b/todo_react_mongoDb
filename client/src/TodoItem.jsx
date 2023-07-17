@@ -16,7 +16,7 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
   }
 
   return (
-    <li onClick={toggleDisplay}>
+    <li className="item" onClick={toggleDisplay}>
       <label>
         <input
           type="checkbox"
@@ -36,7 +36,6 @@ export function TodoItem({ todo, toggleTodo, deleteTodo }) {
             onChange={(e) => {
               setNote(e.target.value);
               updateTodo({ ...todo, notes: e.target.value });
-              // updateTodos(e.target.value, priority, duedate);
             }}
             placeholder="description..."
           ></textarea>

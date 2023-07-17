@@ -18,7 +18,7 @@ export function TodoForm({ addTodo }) {
           placeholder="Add an item"
           onChange={(e) => setNewItem(e.target.value)}
           type="text"
-          id="item"
+          id="add-item"
         />
       </div>
       <button className="add-btn">Add</button>

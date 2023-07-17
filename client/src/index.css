@@ -1,18 +1,16 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-} 
+}  */
 
 body {
-  margin: 0;
   min-width: 320px;
   min-height: 100vh; 
   background: linear-gradient(135deg,#153677,#4e085f);
 }
 
 .todo-container {
-  width: 100%;
   max-width: 540px;
   background: #fff;
   margin: 100px auto 20px;
@@ -23,7 +21,6 @@ h2 {
   font-size: 2.2em;
   color: #002765;
   margin: 20px;
-  padding: auto;
   text-align: center;
 }
 
@@ -36,7 +33,7 @@ h2 {
   margin: 25px;
 }
 
-#item {
+#add-item {
   flex: 1;
   border: none;
   outline: none;
@@ -60,17 +57,17 @@ h2 {
   background: #ee8845;
 }
 
-li {
+.list {
+  display: flex;
+  flex-direction: column;
+}
+
+.item {
   list-style: none;
   font-size: 17px;
   padding: 12px 8px 12px 20px;
   display: flex;
   justify-content: space-around;
-}
-
-li label {
-  margin: 5px;
-  padding: 5px;
 }
 
 .list li:has(input:checked) label {
@@ -79,7 +76,9 @@ li label {
 }
 
 .todo-props {
-  padding: 10px;
+  /* padding: 10px; */
+  display: flex;
+  flex-direction: column;
 }
 
 .del-btn {
