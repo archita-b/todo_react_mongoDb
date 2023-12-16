@@ -1,4 +1,4 @@
-const url = "http://localhost:6000";
+const url = "http://localhost:3000";
 
 export async function fetchTodos() {
   const res = await fetch(url + "/todos");
